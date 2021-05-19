@@ -1,10 +1,12 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.Arrays;
 
 public class Client {
     public static void main(String[] args) {
-        File file = new File("C:\\Programming\\Cloud storage\\cloud-client\\src\\main\\resources\\pepe.jpg");
-        //System.out.println(file.exists());
+        File file = new File("cloud-client\\src\\main\\resources\\pepe.jpg");
+        System.out.println(file.exists());
+        // bla bla
 
         try (Socket socket = new Socket("localhost", 8189);) {
             System.out.println("Connected to server");
@@ -16,10 +18,13 @@ public class Client {
             out.writeLong(file.length());
 
             FileInputStream fis = new FileInputStream(file);
-            int x;
-            while ((x = fis.read()) != -1) {
-                out.write(x);
+            byte[] buffer = new byte[30_000];
+            while ((fis.read(buffer)) != -1) {
+                out.write(buffer);
+                Arrays.fill(buffer, (byte) 0);
             }
+            String callBack = in.readUTF();
+            System.out.println(callBack);
         } catch (IOException e) {
             e.printStackTrace();
         }

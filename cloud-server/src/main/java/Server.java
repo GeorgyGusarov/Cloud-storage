@@ -1,9 +1,11 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Arrays;
 
 public class Server {
     public static void main(String[] args) {
+        System.out.println("Waiting for client to connect...");
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(8189);
@@ -13,17 +15,21 @@ public class Server {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
+            String fileName = in.readUTF();
             long length = in.readLong();
             System.out.println("fileLength: " + length);
-            String fileName = in.readUTF();
 
             File file = new File(fileName);
             if (!file.exists()) file.createNewFile();
 
             FileOutputStream fos = new FileOutputStream(file);
-            for (long i = 0; i < length; i++) {
-                fos.write(in.read());
-                if (i % 1000 == 0) System.out.println(10000 + " b downloaded.");
+            byte[] buffer = new byte[30_000];
+            for (long i = 0; i < length / 30_000; i++) {
+                if (in.read(buffer) != -1) {
+                    fos.write(buffer);
+                    if (i % 10_000_000 == 0) System.out.println(10 + " Mb downloaded.");
+                };
+                Arrays.fill(buffer, (byte) 0);
             }
             fos.close();
             out.writeUTF("File: " + fileName + ", downloaded!");
