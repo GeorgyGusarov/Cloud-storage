@@ -24,13 +24,9 @@ public class Server {
 
             FileOutputStream fos = new FileOutputStream(file);
             byte[] buffer = new byte[30_000];
-            for (long i = 0; i < length / 30_000; i++) {
-                if (in.read(buffer) != -1) {
-                    fos.write(buffer);
-                    if (i % 10_000_000 == 0) System.out.println(10 + " Mb downloaded.");
-                };
-                Arrays.fill(buffer, (byte) 0);
-            }
+            for (long i = 0; i < length; i++) {
+                fos.write(in.read());
+            };
             fos.close();
             out.writeUTF("File: " + fileName + ", downloaded!");
         } catch (IOException e) {
