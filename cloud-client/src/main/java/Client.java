@@ -6,9 +6,8 @@ public class Client {
     public static void main(String[] args) {
         File file = new File("cloud-client\\src\\main\\resources\\pepe.jpg");
         System.out.println(file.exists());
-        // bla bla
 
-        try (Socket socket = new Socket("localhost", 8189);) {
+        try (Socket socket = new Socket("localhost", 8189)) {
             System.out.println("Connected to server");
 
             DataInputStream in = new DataInputStream(socket.getInputStream());

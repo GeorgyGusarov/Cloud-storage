@@ -10,23 +10,22 @@ public class Server {
         try {
             serverSocket = new ServerSocket(8189);
             Socket socket = serverSocket.accept();
-            System.out.println("Client accepted");
+            System.out.println("Client " + serverSocket.getLocalPort() + " accepted");
 
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
             String fileName = in.readUTF();
             long length = in.readLong();
-            System.out.println("fileLength: " + length);
+            System.out.println("fileLength: " + length + " Mb.");
 
             File file = new File(fileName);
             if (!file.exists()) file.createNewFile();
 
             FileOutputStream fos = new FileOutputStream(file);
             byte[] buffer = new byte[30_000];
-            for (long i = 0; i < length; i++) {
-                fos.write(in.read());
-            };
+            for (long i = 0; i < length; i++) fos.write(in.read());
+
             fos.close();
             out.writeUTF("File: " + fileName + ", downloaded!");
         } catch (IOException e) {
