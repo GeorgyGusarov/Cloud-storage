@@ -16,6 +16,15 @@ public class ChannelTest {
         }
         System.out.println(Arrays.toString(buffer.array()));
         buffer.flip();
-        channel.write(buffer);
+
+        for (int i = 0; i < buffer.limit(); i++) {
+            System.out.print((char) buffer.get());
+        }
+        System.out.println();
+
+        ByteBuffer dst = ByteBuffer.allocate(15);
+        channel.read(dst);
+        dst.flip();
+        while (dst.hasRemaining()) System.out.print((char) dst.get());
     }
 }
