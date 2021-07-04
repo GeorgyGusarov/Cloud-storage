@@ -1,4 +1,4 @@
-package java_nio_examples;
+package nio_examples;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
