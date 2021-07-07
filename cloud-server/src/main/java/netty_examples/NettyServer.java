@@ -7,9 +7,7 @@ import io.netty.channel.socket.*;
 import io.netty.channel.socket.nio.*;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-import netty_examples.handlers.BroadcastHandler;
-import netty_examples.handlers.InputHandler;
-import netty_examples.handlers.OutputHandler;
+import netty_examples.handlers.MainHandler;
 
 public class NettyServer implements Runnable {
 
@@ -30,7 +28,7 @@ public class NettyServer implements Runnable {
                          protected void initChannel(SocketChannel socketChannel) {
                              socketChannel.pipeline().addLast(new StringDecoder(),
                                                               new StringEncoder(),
-                                                              new BroadcastHandler());
+                                                              new MainHandler());
                          }
                      });
             ChannelFuture future = bootstrap.bind(8189).sync();
