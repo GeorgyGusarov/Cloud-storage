@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller"
+            prefHeight="900.0" prefWidth="400.0">
+</AnchorPane>
+
+<?import javafx.geometry.Insets?>
+<VBox alignment="CENTER"
+      xmlns="http://javafx.com/javafx/11.0.2-internal"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controller">
+    <HBox VBox.vgrow="ALWAYS">
+        <VBox HBox.hgrow="ALWAYS">
+            <HBox fx:id="localPanel" spacing="5">
+                <Button maxWidth="-Infinity"
+                        onAction="#buttonUpload"
+                        text="Send file to a Cloud"
+                        HBox.hgrow="ALWAYS"/>
+                <Button maxWidth="-Infinity"
+                        onAction="#buttonDeleteFromLocalStorage"
+                        text="Delete"
+                        HBox.hgrow="ALWAYS"/>
+                <padding>
+                    <Insets bottom="5.0"
+                            left="5.0"
+                            right="5.0"
+                            top="5.0"/>
+                </padding>
+            </HBox>
+            <Label alignment="CENTER"
+                   contentDisplay="CENTER"
+                   maxWidth="-Infinity"
+                   text="Local Storage"
+                   textAlignment="CENTER">
+            </Label>
+            <ListView fx:id="localFilesList"
+                      VBox.vgrow="ALWAYS"/>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS">
+            <HBox fx:id="cloudPanel"
+                  spacing="5">
+                <Button maxWidth="-Infinity"
+                        onAction="#buttonDownload"
+                        text="Download"
+                        HBox.hgrow="ALWAYS"/>
+                <Button maxWidth="-Infinity"
+                        onAction="#buttonDeleteFromCloud"
+                        text="Delete"
+                        HBox.hgrow="ALWAYS"/>
+                <padding>
+
+
+
+                </padding>
+
+
+            </HBox>
+
+
+        </VBox>
+
+
+    </HBox>
+
+
+
+</VBox>
+
