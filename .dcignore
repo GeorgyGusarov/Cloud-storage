@@ -1131,7 +1131,7 @@ FakesAssemblies/
 node_modules/
 **/*.HTMLClient/GeneratedArtifacts
 **/*.DesktopClient/GeneratedArtifacts
-**/*.Server/GeneratedArtifacts
+**/*.examples.EasyServer/GeneratedArtifacts
 _Pvt_Extensions
 paket-files/
 __pycache__/
