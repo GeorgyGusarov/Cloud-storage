@@ -9,7 +9,26 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <build>
+        <finalName>EasyServer</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>EasyServer</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <artifactId>cloud-server</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>georgy.gusarov</groupId>
